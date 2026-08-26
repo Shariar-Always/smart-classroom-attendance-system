@@ -1,4 +1,4 @@
-<h1 align="center">🏫 SmartAttend AI — Smart Classroom Attendance System 🚀</h1>
+<h1 align="center">⚙️ SmartAttend AI - Smart Classroom Attendance System ⚙️</h1>
 
 <p align="center">
   <img src="https://i.postimg.cc/zfF24Kw0/image.png" alt="SmartAttend AI Banner">
@@ -35,65 +35,94 @@
   <img src="https://img.shields.io/github/forks/Shariar-Ahamed/smart-classroom-attendance-system?style=social">
 </p>
 
-<p align="center">
-  <a href="https://wakatime.com/badge/user/c7433bc5-6f12-4c97-baea-430790fa608c/project/4d162b42-7e21-4ae8-9867-594059a2c42f">
-    <img src="https://wakatime.com/badge/user/c7433bc5-6f12-4c97-baea-430790fa608c/project/4d162b42-7e21-4ae8-9867-594059a2c42f.svg" alt="wakatime">
-  </a>
-</p>
-
 ---
 
 <p align="center">
-  SmartAttend AI is a premium, high-performance web-based Smart Classroom Attendance System. Built using a <b>React + Vite</b> frontend and a secure <b>Flask + OpenCV</b> backend, it features a gorgeous custom glassmorphic UI, real-time facial recognition (using SSD Mobilenet v1 & YuNet), database activity tracking, role-based access control, and a secure administration panel.
+  <b>SmartAttend AI</b> is a premium, high-performance web-based Smart Classroom Attendance System. Built using a <b>React 19 + Vite</b> frontend and a secure <b>Flask + OpenCV</b> backend, it features a gorgeous custom glassmorphic UI, real-time facial recognition, database activity tracking, role-based access control, and a secure administration panel.
 </p>
 
 > **Live Production Demo**: **[smart-attend-diu.vercel.app](https://smart-attend-diu.vercel.app/)**
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Complete Technology Stack & Core Tools
 
-| Layer | Technologies Used | Description |
-|---|---|---|
-| **Frontend** | React 19, Vite, Tailwind CSS 4 | Glassmorphic interface, dynamic routing, live analytics cards |
-| **Backend** | Python 3, Flask, Flask-CORS | REST APIs, multi-threaded video capture, JWT auth |
-| **AI / CV** | OpenCV (YuNet), `face_recognition` | YuNet face detector + dlib 128-dimensional face encodings |
-| **Database** | MongoDB (PyMongo) | Stores face encodings, user accounts, and class logs |
-| **Security** | JWT, bcrypt | Secure password hashing & Role-Based Access Control (RBAC) |
+This project is built using a modern, lightweight, and high-performance stack that ensures instant real-time AI recognition, data security, and seamless user experiences.
 
----
+### 🎨 Frontend (Client-Side SPA)
+* **React 19 (v19.2.6):** Leverages the latest React core version for blazing-fast component rendering and hook-based state lifecycle management.
+* **Vite (v7.3.2):** Serves as the modern build tool and development server, replacing slow Webpack setups with instant HMR (Hot Module Replacement).
+* **Tailwind CSS 4 (v4.1.17):** Implements the utility-first CSS styling framework with a custom dark-glassmorphic styling system.
+* **Framer Motion (v12.4.2):** Controls the UI animation engine, producing fluid transitions, card animations, and sliding toast notification states.
+* **Lucide React (v1.24.0):** Provides a comprehensive library of pixel-perfect vector icons matching the dark sci-fi aesthetic.
+* **Vite Plugin SingleFile (v2.3.0):** Bundles all compiled Javascript, CSS, and HTML assets into a single static file to maximize load speed and host compatibility.
 
-## 🌟 Key Features
-
-### 🔍 Real-Time Automated Attendance
-- **Live Facial Recognition:** Connects to local webcams or RTSP security streams, runs frame-by-frame face detection, matches details with enrolled student encodings, and records logs.
-- **RTSP IP-Camera Support:** Simply switch your `CAMERA_SOURCE` in the environment configuration to link up to standard CCTV cameras.
-
-### 🛡️ Privacy by Design (No Raw Images Saved)
-- **Vectors Only:** When registering students, the server computes a 128-dimensional face encoding vector from their web photos and stores only this numerical array in MongoDB.
-- **Safe Storage:** Raw images are processed in-memory and immediately discarded—they are never saved to disk or database tables, ensuring strict student visual privacy.
-
-### ⚙️ Role-Based Access Control (RBAC)
-- **Admin Dashboard:** Manage students, register new users, capture enrollment photographs, and manage courses/faculty.
-- **Faculty Dashboard:** Start live face recognition attendance sessions, perform manual attendance updates, and review daily records.
-- **Student Dashboard:** Log in to see dynamic personal attendance percentages, course attendance logs, and overall class presence metrics.
-
-### 📊 Analytics & Reporting
-- **Real-Time KPIs:** Dynamic graphs displaying overall presence rates, total enrolled counts, daily absentees, and course metrics.
-- **Manual Overrides:** Allows faculty to quickly mark students present/absent manually in case of exceptions.
+### 🐍 Backend (REST API Server)
+* **Python 3 (v3.10+):** The backend execution core.
+* **Flask (v3.0.0):** The lightweight WSGI web framework routing API calls and serving live video streams.
+* **Flask-CORS (v4.0.0):** Standardizes Cross-Origin Resource Sharing rules to allow safe client-server communication.
+* **PyMongo (v4.6.1):** The official MongoDB driver linking the python server to the Mongo clusters.
+* **PyJWT (v2.8.0):** Handles cryptographic generation and validation of secure JSON Web Tokens (JWT) for secure authentication.
+* **Bcrypt (v4.1.2):** Enforces industry-standard Blowfish-based password hashing before database storage.
+* **NumPy (v1.26.4):** Manages multi-dimensional array mathematics, coordinates, and face encoding distance metrics.
+* **Pillow (v9.0.0+):** Processes uploaded images in-memory for crop, resize, and orientation operations.
+* **Gunicorn (v21.2.0):** Production-grade WSGI HTTP Server to deploy the Python backend on Linux servers.
 
 ---
 
-## 🖥️ Platform Interfaces
+## 🧠 AI / Computer Vision Models & Libraries
 
-### 🔑 Secure Login
-A futuristic glassmorphic portal handling authentication for Admin, Faculty, and Students using secure JSON Web Tokens (JWT).
+Face detection and recognition occur across the stack depending on the camera source and hardware constraints:
 
-### 📹 Live Attendance
-The heart of the application. Displays a live camera feed showing bounding boxes, detected face confidence rates, and lists students as they are recognized.
+### 1. Browser-Side AI Model (Standard Webcams)
+The React client runs browser-side machine learning using **`@vladmandic/face-api` (v1.7.15)**, a highly optimized, modern fork of face-api.js.
+* **SSD MobileNet v1:** A CNN (Convolutional Neural Network) model trained to detect bounding boxes around human faces in real-time camera frames. The weights are dynamically loaded from a CDN (~5.4 MB) and cached by the browser.
+* **Face Landmarking Net:** Identifies 68 key facial landmarks (eyes, nose, mouth, jawline) to compute face orientation and align the face crop.
+* **Face Recognition Net:** Computes a 128-dimensional FaceNet-style vector descriptor containing the mathematical print of the face.
 
-### 📝 Enrollment Capture
-A dedicated stepper component that guides the user through capturing multiple photos of a student to generate a high-accuracy averaged face signature.
+### 2. Server-Side AI Model (CCTV / RTSP IP Streams)
+For 24/7 CCTV surveillance deployments, the Python backend handles recognition directly to offload client hardware.
+* **YuNet Face Detector:** A state-of-the-art, CNN-based lightweight face detector optimized for OpenCV. It runs on the server, detecting faces at high frames-per-second (FPS) with robust tolerance for angles, lighting, and occlusion.
+* **dlib ResNet Face Recognition:** Evaluates the aligned face crop against the official Python `face_recognition` model weights, producing a 128-dimensional vector encoding conceptually equivalent to the frontend's FaceNet descriptors.
+
+---
+
+## 📂 Core Workflows & Logic Breakdown
+
+Any developer reviewing this codebase should understand these primary workflows:
+
+```
+[Webcam Capture] ---> [Face Detector (SSD/YuNet)] ---> [Landmarks Alignment]
+                                                                |
+                                                                v
+[MongoDB Enc] <--- [128-d Vector Average] <--- [Face Recognition Net (128-d)]
+```
+
+### 1️⃣ Privacy-First Student Enrolment (`RegisterStudent.jsx`)
+To register a student, the administrator captures **5 diverse photos** showing different facial angles (Center, Left, Right, Up, Down).
+1. **In-Memory Vectors:** The system extracts the 128-dimensional vector descriptor for each photo.
+2. **Descriptor Averaging:** The frontend merges these vectors using the `averageDescriptors` function, producing a single, robust mathematical signature of the student's face.
+3. **No Image Saved:** The averaged 128-d array is saved in MongoDB. The raw photos are **completely discarded** from memory and never stored, preserving student privacy.
+
+### 2️⃣ Non-Blocking Multi-Student Scanner (`LiveAttendance.jsx`)
+The live scanner is designed for fast, concurrent processing of multiple students passing by a camera:
+* **Non-Blocking Loop:** A `setInterval` loop runs at `TICK_MS = 500ms` (2 FPS) to analyze webcam frames. Detections are processed asynchronously, meaning the video feed never pauses or blocks.
+* **Session Cache Map (`processedStudentsRef`):** Once a student is successfully matched (either marked present or verified as already marked), they are cached in a local `Set` in-memory. Future frames instantly skip database and API calls for that student, saving server resources.
+* **8s Cooldown Alert Map (`lastNotifiedRef`):** Keeps track of when a notification toast was last triggered for each student ID to prevent spamming popups.
+* **Horizontal Mirroring Alignment:** Since webcams flip the video feed (`-scale-x-100` class), the overlay bounding boxes are mirrored horizontally in `toOverlayStyle` using the formula `vw - box.x - box.width` so the tracking square aligns perfectly with the student's face.
+
+### 3️⃣ Administrative Analytics Engine (`Dashboard.jsx`)
+The dashboard displays aggregated, real-time statistics computed on the database collections:
+* **Department Performance:** Gathers students by department and checks who has checked in today, displaying live bar charts.
+* **Risk Watchlist:** Compiles overall attendance logs and flags students whose attendance rate is below **75%** (the standard exam eligibility threshold).
+* **System Live Logs:** Displays the database latency (`< 15ms`), MongoDB connection status, and model version.
+* **Virtual Terminal Console:** Simulates system status updates, showing neural network weights size (~5.4 MB) and `AES-GCM-256` biometric encryption states.
+
+### 4️⃣ DIU Branded Academic Reporting (`AttendanceRecords.jsx`)
+Administrators and Faculty can generate official attendance reports directly from the database:
+* **Export PDF:** Opens a separate window, injects a styled DIU letterhead (with the Daffodil International University Single Crest Logo), formats active filters (Course, Date, Status), and triggers the browser print engine for clean vector PDF outputs.
+* **Export Excel:** Dynamically writes an HTML XML spreadsheet with grid lines enabled (`<x:DisplayGridlines/>`), blue headers, and text formatting tags (`mso-number-format:'\@';`) which prevent Microsoft Excel from stripping leading zeros off student ID numbers.
+* **Dynamic File Naming:** Automatically names exports according to active criteria (e.g., `DIU_Attendance_AI401_2026_08_26.pdf`).
 
 ---
 
@@ -102,44 +131,50 @@ A dedicated stepper component that guides the user through capturing multiple ph
 ```bash
 smart-classroom-attendance-system/
 │
-├── 📂 backend/                    # Python Flask backend
-│   ├── app.py                     # Main server entry & REST routing
-│   ├── db.py                      # MongoDB initialization & indexes
-│   ├── camera.py                  # Live feed / RTSP wrapper class
-│   ├── face_service.py            # Face detection (YuNet) & signature matching
-│   ├── attendance_service.py      # Core attendance marking rules
-│   ├── auth.py                    # JWT + bcrypt user management
-│   ├── README.md                  # Backend setup guidelines
-│   └── requirements.txt           # Python dependency manifests
+├── backend/                     # Python Flask Backend
+│   ├── app.py                  # Main API server, JWT controller & REST routes
+│   ├── db.py                   # MongoDB initialization & index configuration
+│   ├── camera.py               # Video capture & RTSP camera stream wrapper
+│   ├── face_service.py         # YuNet face detection & dlib signature matching
+│   ├── attendance_service.py   # Attendance rules (checks, overrides, auto-absent)
+│   ├── auth.py                 # JWT token generation & bcrypt password verification
+│   ├── requirements.txt        # Python dependency manifest
+│   └── README.md               # Backend local setup guidelines
 │
-├── 📂 src/                        # React Frontend Source
-│   ├── 📂 components/             # React visual components
-│   │   ├── AttendanceRecords.jsx  # History records & filtering
-│   │   ├── CoursesManager.jsx     # Course & Faculty CRUD panel
-│   │   ├── Dashboard.jsx          # KPI analytics & widgets
-│   │   ├── LiveAttendance.jsx     # OpenCV webcam stream feedback
-│   │   ├── Login.jsx              # RBAC portal
-│   │   ├── ManualAttendance.jsx   # Grid overrides for faculty
-│   │   ├── RegisterStudent.jsx    # Photo-stepper registration capture
-│   │   ├── Sidebar.jsx            # Dynamic navigation system
-│   │   ├── StudentDashboard.jsx   # Dedicated view for logged-in students
-│   │   └── StudentsList.jsx       # Enrolled student directory
-│   ├── 📂 context/                # AuthContext state hooks
-│   ├── 📂 hooks/                  # Custom React hooks (e.g. useWebcam)
-│   ├── 📂 services/               # Axios API wrappers
-│   ├── App.jsx                    # Routing & Shell controller
-│   ├── main.jsx                   # React mounting file
-│   └── index.css                  # Tailwinds style directives
+├── future-plans/                # CCTV Deployment Documentation
+│   ├── README.md               # RTSP stream transcoding & server-side plans
+│   └── ip-cctv-diagram.png     # System architecture visual flow
 │
-├── 📄 index.html                  # Main SPA HTML structure
-├── 📄 vite.config.js              # Vite configuration
-├── 📄 package.json                # Front-end scripts & Node dependencies
-└── 📄 README.md                   # Project documentation
+├── src/                         # React Frontend Source (Vite SPA)
+│   ├── assets/                 # Brand assets (DIU logo files)
+│   ├── components/             # UI Components
+│   │   ├── AttendanceRecords.jsx # PDF/Excel reports, history logs & search
+│   │   ├── CoursesManager.jsx  # Course management & teacher allocation
+│   │   ├── Dashboard.jsx       # Admin analytics, watchlist & system logs
+│   │   ├── LiveAttendance.jsx  # Live webcam scanner, floating toasts & feed
+│   │   ├── Login.jsx           # Dark glassmorphic authentication portal
+│   │   ├── ManualAttendance.jsx # Grid attendance override interface for teachers
+│   │   ├── RegisterStudent.jsx # 5-step capture stepper for new student faces
+│   │   ├── Sidebar.jsx         # Navigation menu & Neon pulsing LED state
+│   │   ├── StudentDashboard.jsx # Personalized course stats view for students
+│   │   └── StudentsList.jsx    # Student profile database directory
+│   ├── services/               # API Communication layers
+│   │   ├── api.js              # Axios interceptors & backend API hooks
+│   │   └── faceModel.js        # face-api.js browser neural net loader & matcher
+│   ├── hooks/                  # Custom React hooks (useWebcam)
+│   ├── index.css               # Google Font (Poppins) & Tailwind CSS v4 setup
+│   ├── App.jsx                 # Routing controller & page layouts
+│   └── main.jsx                # React root SPA rendering mount
+│
+├── index.html                  # Main HTML viewport configuration
+├── vite.config.js              # Vite server & bundler configuration
+├── package.json                # Frontend package scripts & Node libraries
+└── README.md                   # Project documentation (This file)
 ```
 
 ---
 
-## ⚙️ Getting Started (Local Development)
+## 🚀 Getting Started (Local Development)
 
 ### 1️⃣ Clone the Repository
 ```bash
@@ -147,7 +182,7 @@ git clone <repository-url>
 cd smart-classroom-attendance-system
 ```
 
-### 2️⃣ Backend Configuration
+### 2️⃣ Backend Server Setup
 Ensure you have **Python 3.8+** and a running instance of **MongoDB** (local or Atlas cluster).
 
 ```bash
@@ -175,11 +210,11 @@ Run the backend server (starts on `http://localhost:5000`):
 python app.py
 ```
 
-### 3️⃣ Frontend Configuration
+### 3️⃣ Frontend Client Setup
 Ensure you have **Node.js (v18+)** installed.
 
 ```bash
-# Navigate to the root folder
+# Navigate back to the root folder
 cd ..
 
 # Install frontend dependencies
@@ -193,7 +228,7 @@ npm run dev
 
 ## 👤 Initial Seed User
 
-On its first run, the backend automatically seeds a single administrator account. Faculty and students can sign up using the **Register** interface on the front-end login card.
+On its first run, the backend automatically seeds a single administrator account. Faculty and students can sign up using the **Create Account** interface on the front-end login card.
 
 | Role | Username | Password |
 |---|---|---|
@@ -203,3 +238,5 @@ On its first run, the backend automatically seeds a single administrator account
 
 ---
 
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
