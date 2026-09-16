@@ -176,13 +176,32 @@ smart-classroom-attendance-system/
 
 ## 🚀 Getting Started (Local Development)
 
-### 1️⃣ Clone the Repository
+### ⚡ Quick Start (Already Installed & Configured)
+If dependencies, the Python virtual environment, and the `.env` configuration are already set up, simply run the system using two separate terminals:
+
+**Terminal 1 (Backend Server):**
+```powershell
+cd backend
+.\.venv\Scripts\activate
+python app.py
+```
+
+**Terminal 2 (Frontend Client):**
+```powershell
+npm run dev
+```
+
+---
+
+### 📦 Full Setup Guide (First-Time Installation)
+
+#### 1️⃣ Clone the Repository
 ```bash
 git clone <repository-url>
 cd smart-classroom-attendance-system
 ```
 
-### 2️⃣ Backend Server Setup
+#### 2️⃣ Backend Server Setup
 Ensure you have **Python 3.8+** and a running instance of **MongoDB** (local or Atlas cluster).
 
 ```bash
@@ -210,7 +229,7 @@ Run the backend server (starts on `http://localhost:5000`):
 python app.py
 ```
 
-### 3️⃣ Frontend Client Setup
+#### 3️⃣ Frontend Client Setup
 Ensure you have **Node.js (v18+)** installed.
 
 ```bash
