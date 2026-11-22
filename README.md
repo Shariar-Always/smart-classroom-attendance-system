@@ -1,7 +1,7 @@
 <h1 align="center">⚙️ SmartAttend AI - Smart Classroom Attendance System ⚙️</h1>
 
 <p align="center">
-  <img src="https://i.postimg.cc/zfF24Kw0/image.png" alt="SmartAttend AI Banner">
+  <img src="public/banner.png" alt="SmartAttend AI Banner">
 </p>
 
 ---
@@ -26,13 +26,13 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-6366f1"></a>
-  <img src="https://img.shields.io/github/repo-size/Shariar-Ahamed/smart-classroom-attendance-system">
-  <img src="https://img.shields.io/github/last-commit/Shariar-Ahamed/smart-classroom-attendance-system">
+  <img src="https://img.shields.io/github/repo-size/Shariar-Always/smart-classroom-attendance-system">
+  <img src="https://img.shields.io/github/last-commit/Shariar-Always/smart-classroom-attendance-system">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/Shariar-Ahamed/smart-classroom-attendance-system?style=social">
-  <img src="https://img.shields.io/github/forks/Shariar-Ahamed/smart-classroom-attendance-system?style=social">
+  <img src="https://img.shields.io/github/stars/Shariar-Always/smart-classroom-attendance-system?style=social">
+  <img src="https://img.shields.io/github/forks/Shariar-Always/smart-classroom-attendance-system?style=social">
 </p>
 
 ---
